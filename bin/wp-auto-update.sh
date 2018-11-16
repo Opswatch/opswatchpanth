@@ -46,9 +46,9 @@ terminus connection:set $SITE_UUID.$TERMINUS_ENV sftp
 # waking the site
 terminus env:wake -n $SITE_UUID.$TERMINUS_ENV
 
-# check for Drupal plugin updates
-echo -e "\nChecking for Drupal plugin updates on the ${TERMINUS_ENV} multidev..."
-PLUGIN_UPDATES="$(terminus wp $SITE_UUID.$TERMINUS_ENV -- plugin update --dry-run --all --format=summary)"
+# check for Drupal module updates
+echo -e "\nChecking for Drupal module updates on the ${TERMINUS_ENV} multidev..."
+PLUGIN_UPDATES="$(terminus drush $SITE_UUID.$TERMINUS_ENV -- plugin update --dry-run --all --format=summary)"
 
 if [[ ${PLUGIN_UPDATES} == "No plugin updates available." ]]
 then
@@ -59,8 +59,8 @@ else
     # update Drupal modules
     echo -e "\nUpdating Drupal modules on the ${TERMINUS_ENV} multidev..."
     php -f bin/slack_notify.php drupal_moduleupdates ${PLUGIN_UPDATES}
-    php -f bin/slack_notify.php terminus_pluginupdates
-    terminus wp $SITE_UUID.$TERMINUS_ENV -- plugin update --all
+    php -f bin/slack_notify.php terminus_moduleupdates
+    terminus drush $SITE_UUID.$TERMINUS_ENV -- plugin update --all
 
     # wake the site environment before committing code
     echo -e "\nWaking the ${TERMINUS_ENV} multidev..."
@@ -116,7 +116,7 @@ else
         # # deploy to test
         # echo -e "\nDeploying the updates from dev to test..."
         # # php -f bin/slack_notify.php pantheon_deploy test
-        # terminus env:deploy $SITE_UUID.test --sync-content --cc --note="Auto deploy of Wordpress updates (core, plugins)" --updatedb
+        # terminus env:deploy $SITE_UUID.test --sync-content --cc --note="Auto deploy of Drupal updates (core, plugins)" --updatedb
 
         # # backup the live site
         # echo -e "\nBacking up the live environment..."
@@ -126,7 +126,7 @@ else
         # # deploy to live
         # echo -e "\nDeploying the updates from test to live..."
         # # php -f bin/slack_notify.php pantheon_deploy live
-        # terminus env:deploy $SITE_UUID.live --cc --note="Auto deploy of Drupal updates (core, plugins)" --updatedb
+        # terminus env:deploy $SITE_UUID.live --cc --note="Auto deploy of Drupal updates (core, modules)" --updatedb
 
         # echo -e "\nVisual regression tests passed! Drupal updates deployed to live..."
         # # php -f bin/slack_notify.php wizard_done `find . | grep document_0_desktop | grep test`
