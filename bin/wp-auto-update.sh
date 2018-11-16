@@ -51,7 +51,7 @@ echo -e "\nChecking for Drupal module updates on the ${TERMINUS_ENV} multidev...
 terminus drush $SITE_UUID.$TERMINUS_ENV -- pm-updatestatus
 PLUGIN_UPDATES="$(terminus drush $SITE_UUID.$TERMINUS_ENV -- pm-updatestatus --dry-run --all --format=summary)"
 
-if [[ ${PLUGIN_UPDATES} == "No plugin updates available." ]]
+if [[ ${PLUGIN_UPDATES} == "No module updates available." ]]
 then
     # no Drupal module updates found
     echo -e "\nNo Drupal module updates found on the ${TERMINUS_ENV} multidev..."
@@ -61,7 +61,7 @@ else
     echo -e "\nUpdating Drupal modules on the ${TERMINUS_ENV} multidev..."
     php -f bin/slack_notify.php drupal_moduleupdates ${PLUGIN_UPDATES}
     php -f bin/slack_notify.php terminus_moduleupdates
-    terminus drush $SITE_UUID.$TERMINUS_ENV -- plugin update --all
+    terminus drush $SITE_UUID.$TERMINUS_ENV -- pm-updatecode --no-core --yes
 
     # wake the site environment before committing code
     echo -e "\nWaking the ${TERMINUS_ENV} multidev..."
