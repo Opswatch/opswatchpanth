@@ -1,7 +1,7 @@
 #!/bin/bash
 
-eval $(ssh-agent -s)
-ssh-add <(echo $SSH_PRIVATE_KEY | base64 --decode)
+#eval $(ssh-agent -s)
+#ssh-add <(echo $SSH_PRIVATE_KEY | base64 --decode)
 UPDATES_APPLIED=false
 
 # login to Terminus
