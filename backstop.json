@@ -20,9 +20,9 @@
       "misMatchThreshold" : 0.05
     },
  {
-      "label": "Recipes",
-      "url": "http://dev-opswatchpantheon.pantheonsite.io/recipe",
-      "referenceUrl": "https://ci-update-opswatchpantheon.pantheonsite.io/recipe",
+      "label": "Main test",
+      "url": "http://dev-opswatchpantheon.pantheonsite.io/",
+      "referenceUrl": "https://ci-update-opswatchpantheon.pantheonsite.io/",
       "hideSelectors": [],
       "selectors": [
         "document"
