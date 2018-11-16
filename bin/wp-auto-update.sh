@@ -114,10 +114,10 @@ else
         php -f bin/slack_notify.php pantheon_deploy dev
         terminus multidev:merge-to-dev $SITE_UUID.$TERMINUS_ENV
 
-        # # deploy to test
-        # echo -e "\nDeploying the updates from dev to test..."
-        # # php -f bin/slack_notify.php pantheon_deploy test
-        # terminus env:deploy $SITE_UUID.test --sync-content --cc --note="Auto deploy of Drupal updates (core, plugins)" --updatedb
+        # deploy to test
+        echo -e "\nDeploying the updates from dev to test..."
+        php -f bin/slack_notify.php pantheon_deploy test
+        terminus env:deploy $SITE_UUID.test --sync-content --cc --note="Auto deploy of Drupal updates (core, plugins)" --updatedb
 
         # # backup the live site
         # echo -e "\nBacking up the live environment..."
