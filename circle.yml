@@ -45,7 +45,6 @@ workflows:
               branches:
                  only:
                    - master
-                   - opswatchpantheon2
 
 # machine:
 #   timezone:
