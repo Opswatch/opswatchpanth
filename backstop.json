@@ -18,8 +18,8 @@
     {
       "label": "Homepage",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
-      "url": "http://dev-opswatchpantheon.pantheonsite.io",
-      "referenceUrl": "https://ci-update-opswatchpantheon.pantheonsite.io",
+      "url": "http://dev-opswatchpanth.pantheonsite.io/",
+      "referenceUrl": "https://ci-update-opswatchpanth.pantheonsite.io",
       "readyEvent": "",
       "readySelector": "",
       "delay": 0,
