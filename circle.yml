@@ -41,6 +41,10 @@ workflows:
   run_updates:
     jobs:
       - updates
+           filters:
+              branches:
+                 only:
+                   - master
 
 # machine:
 #   timezone:
